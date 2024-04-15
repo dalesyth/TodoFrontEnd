@@ -18,7 +18,7 @@ export const TaskDateField: FC<IDateField> = (props): ReactElement => {
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DesktopDatePicker
           label="Task Date"
-          format="dd/MM/yyyy"
+          format="MM/dd/yyyy"
           value={value}
           onChange={onChange}
           disabled={disabled}
