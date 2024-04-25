@@ -14,7 +14,6 @@ import { TaskDateField } from './_taskDateField';
 import { TaskSelectField } from './_taskSelectField';
 import { Status } from './enums/Status';
 import { Priority } from './enums/Priority';
-// import { useMutation } from '@tanstack/react-query';
 import { useMutation } from '@tanstack/react-query';
 import { sendApiRequest } from '../../helpers/sendApiRequest';
 import { ICreateTask } from '../taskArea/interfaces/ICreateTask';
@@ -26,6 +25,8 @@ export const CreateTaskForm: FC = (): ReactElement => {
   const [date, setDate] = useState<Date | null>(new Date());
   const [status, setStatus] = useState<string>(Status.todo);
   const [priority, setPriority] = useState<string>(Priority.normal);
+
+  // Create task mutation
 
   // Create task mutation
   //@ts-ignore
@@ -45,6 +46,7 @@ export const CreateTaskForm: FC = (): ReactElement => {
       status,
       priority,
     };
+    //@ts-ignore
     createTaskMutation.mutate(task);
   }
 
@@ -66,7 +68,9 @@ export const CreateTaskForm: FC = (): ReactElement => {
       </Typography>
       <Stack sx={{ width: '100%' }} spacing={2}>
         <TaskTitleField onChange={(e) => setTitle(e.target.value)} />
-        <TaskDescriptionField onChange={(e) => setTitle(e.target.value)} />
+        <TaskDescriptionField
+          onChange={(e) => setDescription(e.target.value)}
+        />
         <TaskDateField value={date} onChange={(date) => setDate(date)} />
 
         <Stack sx={{ width: '100%' }} direction="row" spacing={2}>
