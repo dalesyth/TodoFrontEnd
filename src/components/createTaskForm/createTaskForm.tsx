@@ -83,6 +83,7 @@ export const CreateTaskForm: FC = (): ReactElement => {
           <TaskSelectField
             label="Status"
             name="status"
+            value={status}
             onChange={(e) => setStatus(e.target.value as string)}
             items={[
               {
