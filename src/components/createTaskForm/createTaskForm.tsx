@@ -29,12 +29,6 @@ export const CreateTaskForm: FC = (): ReactElement => {
 
   // Create task mutation
 
-  // Create task mutation
-  //@ts-ignore
-  // const createTaskMutation = useMutation((data: ICreateTask) =>
-  //   sendApiRequest('http://localhost:3200/tasks', 'POST', data),
-  // );
-
   const createTaskMutation = useMutation({
     mutationKey: ['createTask'], // Ensure the mutationKey is passed as an array of string(s)
     mutationFn: async (data: ICreateTask) =>
@@ -53,7 +47,7 @@ export const CreateTaskForm: FC = (): ReactElement => {
       status,
       priority,
     };
-    //@ts-ignore
+
     createTaskMutation.mutate(task);
   }
 
