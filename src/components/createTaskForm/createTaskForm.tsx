@@ -117,7 +117,8 @@ export const CreateTaskForm: FC = (): ReactElement => {
             ]}
           />
         </Stack>
-        <LinearProgress />
+        {createTaskMutation.isPending && <LinearProgress />}
+
         <Button
           onClick={createTaskHandler}
           variant="contained"
