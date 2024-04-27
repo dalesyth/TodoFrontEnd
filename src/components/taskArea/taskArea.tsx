@@ -39,19 +39,37 @@ export const TaskArea: FC = () => {
           <TaskCounter />
         </Grid>
         <Grid item display="flex" flexDirection="column" xs={10} md={8}>
-          {error && (
-            <Alert severity="error">There was an error fetching tasks</Alert>
-          )}
-          {!error && Array.isArray(data) && data.length === 0 && (
-            <Alert severity="warning">
-              You do not have any tasks created yet. Start by creating some
-              tasks
-            </Alert>
-          )}
+          <>
+            {error && (
+              <Alert severity="error">There was an error fetching tasks</Alert>
+            )}
+            {!error && Array.isArray(data) && data.length === 0 && (
+              <Alert severity="warning">
+                You do not have any tasks created yet. Start by creating some
+                tasks
+              </Alert>
+            )}
 
-          <Task id="123" />
-          <Task id="123" />
-          <Task id="123" />
+            {isLoading ? (
+              <LinearProgress />
+            ) : (
+              Array.isArray(data) &&
+              data.length > 0 &&
+              data.map((each, index) => {
+                return (
+                <Task
+                  key={index + each.priority}
+                  id={each.id}
+                  title={each.title}
+                  date={new Date(each.date)}
+                  description={each.description}
+                  priority={each.priority}
+                  status={each.status}
+                />
+                );
+              })
+            )}
+          </>
         </Grid>
       </Grid>
     </Grid>
