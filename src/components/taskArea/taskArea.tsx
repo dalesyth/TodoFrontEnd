@@ -8,12 +8,15 @@ import { sendApiRequest } from '../../helpers/sendApiRequest';
 import { ITaskApi } from './interfaces/ITaskApi';
 
 export const TaskArea: FC = () => {
-  const { error, isLoading, data, refetch } = useQuery({queryKey: ['tasks'], queryFn: async () => {
-    return await sendApiRequest<ITaskApi[]>(
-      'http://localhost:3200/tasks',
-      'GET',
-    );
-  }});
+  const { error, isLoading, data, refetch } = useQuery({
+    queryKey: ['tasks'],
+    queryFn: async () => {
+      return await sendApiRequest<ITaskApi[]>(
+        'http://localhost:3200/tasks',
+        'GET',
+      );
+    },
+  });
 
   return (
     <Grid item md={8} px={4}>
