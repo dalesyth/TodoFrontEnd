@@ -5,19 +5,15 @@ import { TaskCounter } from '../taskCounter/taskCounter';
 import { Task } from '../task/task';
 import { useQuery } from '@tanstack/react-query';
 import { sendApiRequest } from '../../helpers/sendApiRequest';
+import { ITaskApi } from './interfaces/ITaskApi';
 
 export const TaskArea: FC = () => {
-
-  const { error, isLoading, data, refetch } = useQuery(
-    'tasks',
-    async ()=>{
-      return await sendApiRequest(
-        'http://localhost:3200/tasks',
-        'GET',
-        
-      )
-    }
-  );
+  const { error, isLoading, data, refetch } = useQuery({queryKey: ['tasks'], queryFn: async () => {
+    return await sendApiRequest<ITaskApi[]>(
+      'http://localhost:3200/tasks',
+      'GET',
+    );
+  }});
 
   return (
     <Grid item md={8} px={4}>
@@ -43,7 +39,6 @@ export const TaskArea: FC = () => {
           <Task />
           <Task />
           <Task />
-          
         </Grid>
       </Grid>
     </Grid>
