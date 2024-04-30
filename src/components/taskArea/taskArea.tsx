@@ -29,11 +29,11 @@ export const TaskArea: FC = () => {
   function onStatusChangeHandler(
     e: React.ChangeEvent<HTMLInputElement>,
     id: string,
-  ){
+  ) {
     updateTaskMutation.mutate({
       id,
       status: e.target.checked ? Status.inProgress : Status.todo,
-    })
+    });
   }
 
   function markCompleteHandler(
@@ -45,7 +45,7 @@ export const TaskArea: FC = () => {
     updateTaskMutation.mutate({
       id,
       status: Status.completed,
-    })
+    });
   }
 
   return (
